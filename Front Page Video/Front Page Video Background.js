@@ -1,9 +1,10 @@
 // script and code to embed a video as the title page on a Squarespace site.
 // Just need to put on the parent directory of the front page. (Usually named "Home")
-// Paste everything below into the code injection under "Advanced" once you have the video uploaded.
+// Paste everything below into the code injection under "Advanced" once you have the video uploaded and the code configured with the URL
 
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
  <script type="text/javascript">
+ //checks for device type, and if it should load the video
       $(window).bind("load", function() {
         if( /Android|webOS|iPad|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         } else {
@@ -16,11 +17,11 @@
             banner = $('.has-main-image img').first();
           if (banner.length === 0)
               banner = $('#page-thumb img').first();
-
-          var url = "http://andrew-wilde-ladp.squarespace.com/s/Kingdom-Come-Impact-2016-Promo.mp4";
+//THIS IS WHERE YOU PUT THE URL
+          var url = "INSERT-VIDEO-URL-HERE";
           banner.hide();
           $('<video class="bannerVideo" autoplay="" loop="" preload><source src="' + url + '" type="video/mp4"></video>').insertAfter(banner);
-
+//Mute Button
           var mute = $("<div>Mute</div>");
 mute.css({
     position: 'absolute',
@@ -42,7 +43,7 @@ mute.click(function() {
 
 });
 mute.insertBefore($('#footer'));
-
+//end of mute button
           adjustBanner($('.bannerVideo'), banner);
           setTimeout(function() {
             adjustBanner($('.bannerVideo'), banner);
